@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="Servlets:ear exploded">
+    <output-path>$PROJECT_DIR$/classes/artifacts/Servlets_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Servlets/javaeeApplication/javaEEApplication" />
+    </root>
+  </artifact>
+</component>

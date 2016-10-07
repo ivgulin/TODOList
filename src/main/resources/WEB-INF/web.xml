@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
+
+    <display-name>HelloWorld Application</display-name>
+    <description>
+        This is a simple web application with a source code organization
+        based on the recommendations of the Application Developer's Guide.
+    </description>
+
+    <servlet>
+        <servlet-name>ToDoList</servlet-name>
+        <servlet-class>com.mokujin.module08.ToDoListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ToDoList</servlet-name>
+        <url-pattern>/todo</url-pattern>
+    </servlet-mapping>
+
+</web-app>
