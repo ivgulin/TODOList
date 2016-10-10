@@ -1,5 +1,4 @@
 <%@ page import="java.io.PrintWriter" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.mokujin.module08.ToDoListServlet" %>
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="com.mokujin.module08.Task" %>
@@ -11,13 +10,14 @@
   Time: 21:20
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>ToDo List</title>
 </head>
 <body>
-<form action="todo" method="get">
+<form action="todo" method="post">
     <table>
         <tr>
             <td>Task Name:</td>

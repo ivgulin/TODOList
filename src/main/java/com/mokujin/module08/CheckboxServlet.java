@@ -14,16 +14,27 @@ import java.util.List;
  */
 public class CheckboxServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String[] checkboxDecisions = request.getParameterValues("isComplete");
         List<Task> tasks = (ArrayList) session.getAttribute("tasks");
+        int[] checkboxDecisionsInInteger = new int[checkboxDecisions.length];
 
+        for (int i = 0; i < checkboxDecisions.length; i++) {
+            checkboxDecisionsInInteger[i] = Integer.parseInt(checkboxDecisions[i]);
+        }
+
+        int k = 0;
         for (int i = 0; i < tasks.size(); i++) {
-            if (checkboxDecisions[i] == "true") {
-                tasks.remove(i);
+            if (i < checkboxDecisionsInInteger.length) {
+                int j = checkboxDecisionsInInteger[i] - k;
+                tasks.remove(j);
+                k++;
             }
         }
-        session.setAttribute("tasks",tasks);
+
+        System.out.println(tasks.size());
+        session.setAttribute("tasks", tasks);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }
