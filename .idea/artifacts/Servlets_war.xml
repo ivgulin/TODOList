@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="Servlets:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="todoApp.war">
-      <element id="artifact" artifact-name="Servlets:war exploded" />
-    </root>
-  </artifact>
-</component>
