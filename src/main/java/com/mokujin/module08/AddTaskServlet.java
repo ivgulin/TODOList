@@ -17,24 +17,31 @@ import java.util.List;
 public class AddTaskServlet extends HttpServlet {
 
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Task> tasks;
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("tasks") == null) {
-            tasks = new ArrayList<>();
-            session.setAttribute("tasks", tasks);
-        }
-        tasks = (List<Task>) session.getAttribute("tasks");
         String taskName = request.getParameter("taskName");
         String taskCategory = request.getParameter("taskCategory");
-        Task task = new Task(taskName, taskCategory);
-        tasks.add(task);
+        if (!"".equals(taskName) && !"".equals(taskCategory)) {
+            List<Task> tasks;
+            if (session.getAttribute("tasks") == null) {
+                tasks = new ArrayList<>();
+                session.setAttribute("tasks", tasks);
+            }
+            tasks = (List<Task>) session.getAttribute("tasks");
+            Task task = new Task(taskName, taskCategory);
+            tasks.add(task);
 
-        session.setAttribute("tasks",tasks);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+            session.setAttribute("tasks", tasks);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            session.setAttribute("badRequest", false);
+            request.getRequestDispatcher("adding.jsp").forward(request, response);
+        } else {
+            session.setAttribute("badRequest", true);
+            request.getRequestDispatcher("adding.jsp").forward(request, response);
+        }
+
     }
 }
 

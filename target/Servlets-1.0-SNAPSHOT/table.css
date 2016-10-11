@@ -10,15 +10,16 @@ table {
 }
 
 table.center {
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 th, td {
     padding: 15px;
     text-align: left;
 }
-th.smaller{
+
+th.smaller {
     width: 20%;
 }
 
@@ -29,7 +30,6 @@ td.without_bottom {
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-
 
 .button {
     background-color: #4CAF50;
@@ -54,3 +54,23 @@ tr:nth-child(even) {
     color: green;
     border: 2px solid #4CAF50
 }
+
+div.red {
+    position: static;
+    font-size: 15px;
+    font-style: normal;
+    font-family: "Courier 10 Pitch";
+    color: red;
+    left: 50%;
+}
+
+#unique{
+    margin-left: 40%;
+}
+
+h3 {
+    margin-left: 25%;
+    color: #4CAF50;
+}
+
+

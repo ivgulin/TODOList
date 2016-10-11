@@ -15,21 +15,26 @@ public class DeleteTasksServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String[] checkboxDecisions = request.getParameterValues("isComplete");
         List<Task> tasks = (ArrayList) session.getAttribute("tasks");
-        int[] checkboxDecisionsInInteger = new int[checkboxDecisions.length];
 
-        for (int i = 0; i < checkboxDecisions.length; i++) {
-            checkboxDecisionsInInteger[i] = Integer.parseInt(checkboxDecisions[i]);
-        }
+        if (tasks != null && checkboxDecisions != null) {
+            int[] checkboxDecisionsInInteger = new int[checkboxDecisions.length];
 
-        int k = 0;
-        for (int i = 0; i < tasks.size(); i++) {
-            if (i < checkboxDecisionsInInteger.length) {
-                int j = checkboxDecisionsInInteger[i] - k;
-                tasks.remove(j);
-                k++;
+            for (int i = 0; i < checkboxDecisions.length; i++) {
+                checkboxDecisionsInInteger[i] = Integer.parseInt(checkboxDecisions[i]);
             }
+
+            for (int i = 0; i < checkboxDecisionsInInteger.length; i++) {
+                tasks.remove(checkboxDecisionsInInteger[i]);
+                if (i != checkboxDecisionsInInteger.length - 1) {
+                    checkboxDecisionsInInteger[i + 1] = checkboxDecisionsInInteger[i + 1] - 1;
+                }
+            }
+            session.setAttribute("tasks", tasks);
+            session.setAttribute("badRequest", false);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
+            session.setAttribute("badRequest", true);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-        session.setAttribute("tasks", tasks);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }
