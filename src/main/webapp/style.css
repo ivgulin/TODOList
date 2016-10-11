@@ -55,13 +55,12 @@ tr:nth-child(even) {
     border: 2px solid #4CAF50
 }
 
-div.red {
-    position: static;
+h1.red {
     font-size: 15px;
     font-style: normal;
     font-family: "Courier 10 Pitch";
     color: red;
-    left: 50%;
+    margin-left: 35%;
 }
 
 #unique {

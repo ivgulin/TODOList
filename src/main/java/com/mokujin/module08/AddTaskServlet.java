@@ -35,10 +35,10 @@ public class AddTaskServlet extends HttpServlet {
 
             session.setAttribute("tasks", tasks);
             request.getRequestDispatcher("index.jsp").forward(request, response);
-            session.setAttribute("badRequest", false);
+            request.setAttribute("badRequest", false);
             request.getRequestDispatcher("adding.jsp").forward(request, response);
         } else {
-            session.setAttribute("badRequest", true);
+            request.setAttribute("badRequest", true);
             request.getRequestDispatcher("adding.jsp").forward(request, response);
         }
 

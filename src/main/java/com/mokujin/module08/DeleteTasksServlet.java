@@ -13,7 +13,7 @@ public class DeleteTasksServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String[] checkboxDecisions = request.getParameterValues("isComplete");
+        String[] checkboxDecisions = request.getParameterValues("signed");
         List<Task> tasks = (ArrayList) session.getAttribute("tasks");
 
         if (tasks != null && checkboxDecisions != null) {
@@ -30,10 +30,10 @@ public class DeleteTasksServlet extends HttpServlet {
                 }
             }
             session.setAttribute("tasks", tasks);
-            session.setAttribute("badRequest", false);
+            request.setAttribute("badRequest", false);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
-            session.setAttribute("badRequest", true);
+            request.setAttribute("badRequest", true);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

@@ -4,11 +4,11 @@
 <html>
 <head>
     <title>ToDo List</title>
-    <link rel="stylesheet" type="text/css" href="table.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<c:if test="${sessionScope.get(\"badRequest\")==true}">
-    <div><c:out value="Wrong task properties. Repeat please."/></div>
+<c:if test="${requestScope.get(\"badRequest\")==true}">
+    <h1 class="red"><c:out value="Wrong task properties. Repeat please."/></h1>
 </c:if>
 <form action="todo" method="post">
     <table class="center">

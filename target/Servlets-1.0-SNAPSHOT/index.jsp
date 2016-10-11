@@ -5,11 +5,11 @@
 <html>
 <head>
     <title>ToDoList</title>
-    <link rel="stylesheet" type="text/css" href="table.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<c:if test="${sessionScope.get(\"badRequest\")==true}">
-    <div class="red"><c:out value="There is no signed tasks!"/></div>
+<c:if test="${requestScope.get(\"badRequest\")==true}">
+    <h1 class="red"><c:out value="There is no signed tasks!"/></h1>
 </c:if>
 <c:set var="tasks" value="${sessionScope.get(\"tasks\")}"/>
 <c:choose>
@@ -33,7 +33,7 @@
                     <td><c:out value="${task.taskName}"/></td>
                     <td><c:out value="${task.taskCategory}"/></td>
                     <c:set var="counter" value="${counter+1}"/>
-                    <td><input type="checkbox" name="isComplete" value="${counter}"/></td>
+                    <td><input type="checkbox" name="signed" value="${counter}"/></td>
                 </tr>
                 </c:forEach>
         </table>
