@@ -1,40 +1,35 @@
-<%@ page import="com.mokujin.module08.Task" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: mokujin
-  Date: 09.10.16
-  Time: 21:54
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>ToDoList</title>
+    <link rel="stylesheet" type="text/css" href="table.css">
 </head>
 <body>
-<%List<Task> tasks = (List<Task>) session.getAttribute("tasks");%>
-<table width="100%" border="1" align="center">
-    <tr bgcolor=\"#8a2be2\">
+<c:set var="tasks" value="${sessionScope.get(\"tasks\")}"/>
+<table class="center">
+    <tr>
         <th>Name</th>
-        <th>Category</th>
-        <th>Complete</th>
+        <th class="smaller">Category</th>
+        <th class="smaller">Complete</th>
     </tr>
-    <form action="check" method="post">
+    <form action="delete" method="post">
         <c:set var="counter" value="${-1}"/>
-        <% for (int i = 0; i < tasks.size(); i++) { %>
+        <c:forEach var="task" items="${tasks}">
         <tr>
-            <td><%out.println(tasks.get(i).getTaskName());%></td>
-            <td><%out.println(tasks.get(i).getTaskCategory());%></td>
+            <td><c:out value="${task.taskName}"/></td>
+            <td><c:out value="${task.taskCategory}"/></td>
             <c:set var="counter" value="${counter+1}"/>
             <td><input type="checkbox" name="isComplete" value="${counter}"/></td>
         </tr>
-        <%}%>
-        <td align="right" colspan="2"><input type="submit" value="Update Tasks"/></td>
-    </form>
+        </c:forEach>
 </table>
-<button><a href="adding.jsp">Add Task</a> </button>
+<td align="right" colspan="2"><input type="submit" class="button" value="Update Tasks"/></td>
+</form>
 
+<form action="adding.jsp">
+    <button type="submit" class="button">Add Task</button>
+</form>
 </body>
 </html>

@@ -9,10 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mokujin on 09.10.16.
- */
-public class CheckboxServlet extends HttpServlet {
+public class DeleteTasksServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -32,8 +29,6 @@ public class CheckboxServlet extends HttpServlet {
                 k++;
             }
         }
-
-        System.out.println(tasks.size());
         session.setAttribute("tasks", tasks);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
